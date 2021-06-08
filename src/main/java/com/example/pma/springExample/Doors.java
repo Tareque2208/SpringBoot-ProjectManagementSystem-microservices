@@ -1,0 +1,5 @@
+package com.example.pma.springExample;
+
+public class Doors {
+
+}
