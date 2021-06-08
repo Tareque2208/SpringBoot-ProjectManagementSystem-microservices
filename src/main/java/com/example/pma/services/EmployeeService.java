@@ -20,11 +20,12 @@ public class EmployeeService {
 	//any class I want
 	//Another is using @Qualifier annotation and using subclass name as value.
 	//While using subclass name as value we MUST use first letter as lowerCase
-	@Qualifier("staffRepositoryImplementation1")
-	@Autowired
-	IStaffRepository empRepo;
+//	@Qualifier("staffRepositoryImplementation1")
+//	@Autowired
+//	IStaffRepository empRepo;
 
-//	EmployeeRepository empRepo;
+	@Autowired
+	EmployeeRepository empRepo;
 	//Constructor Injection
 	//But for constructor injection we need to comment out autowired in the initialization
 //	public EmployeeService(IStaffRepository empRepo) {
@@ -40,14 +41,13 @@ public class EmployeeService {
 //		this.empRepo = empRepo;
 //	}
 
-//	public Employee save(Employee employee) {
-//		return empRepo.save(employee);
-//	}
-//
-//
-//	public Iterable<Employee> getAll() {
-//		return empRepo.findAll();
-//	}
+	public Employee save(Employee employee) {
+		return empRepo.save(employee);
+	}
+
+	public Iterable<Employee> getAll() {
+		return empRepo.findAll();
+	}
 //
 //
 //	public List<EmployeeProject> employeeProjects() {

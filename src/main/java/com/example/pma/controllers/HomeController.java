@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.example.pma.dto.ChartData;
 import com.example.pma.dto.EmployeeProject;
+import com.example.pma.services.ProjectService;
 import com.example.pma.springExample.Car;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -32,7 +33,7 @@ public class HomeController {
 	EmployeeRepository employeeRepo;
 
 	@Autowired
-	ProjectRepository projectRepo;
+	ProjectService proService;
 
 	@GetMapping(value = "/")
 	public String displayHome(Model model) throws JsonProcessingException {
@@ -41,7 +42,7 @@ public class HomeController {
 
 
 		//we are querying the database for project
-		List<Project> projects =  projectRepo.findAll();
+		List<Project> projects =  proService.getAll();
 		model.addAttribute("projectlist",projects);
 
 		//we are querying the database for project
@@ -50,7 +51,7 @@ public class HomeController {
 
 
 		//we are querying the database for project
-		List<ChartData> projectStatus =  projectRepo.getProjectStatus();
+		List<ChartData> projectStatus =  proService.getProjectStatus();
 
 		//Converting ProjectStage data into json file
 		ObjectMapper objectMapper = new ObjectMapper();

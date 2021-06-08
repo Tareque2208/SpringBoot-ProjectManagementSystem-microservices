@@ -2,6 +2,7 @@ package com.example.pma.controllers;
 
 import java.util.List;
 
+import com.example.pma.dao.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,12 +23,14 @@ public class ProjectController {
 	@Autowired
 	ProjectRepository projectRepo;
 	@Autowired
-	ProjectRepository empRepo;
+    EmployeeRepository empRepo;
 
     @GetMapping(value = "/new")
     public String displayProjectForm(Model model){
     	Project aProject = new Project();
     	model.addAttribute("project", aProject);
+    	List<Employee> employees = empRepo.findAll();
+        model.addAttribute("employeeList", employees);
         return "projects/new-project";
     }
     
