@@ -11,6 +11,8 @@ import java.util.List;
 @Service
 public class EmployeeService {
 
+	//3 types of injections. Best is Field Injection
+
 	//Field Injection
 	@Autowired
 	EmployeeRepository empRepo;
