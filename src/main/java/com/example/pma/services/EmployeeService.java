@@ -50,9 +50,9 @@ public class EmployeeService {
 	}
 //
 //
-//	public List<EmployeeProject> employeeProjects() {
-//		return empRepo.employeeProjects();
-//	}
+	public List<EmployeeProject> employeeProjects() {
+		return empRepo.employeeProjects();
+	}
 
 
 }

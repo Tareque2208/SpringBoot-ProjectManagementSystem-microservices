@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.example.pma.dto.ChartData;
 import com.example.pma.dto.EmployeeProject;
+import com.example.pma.services.EmployeeService;
 import com.example.pma.services.ProjectService;
 import com.example.pma.springExample.Car;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -29,11 +30,14 @@ public class HomeController {
 	@Value("${version}")
 	private String ver;
 
-	@Autowired
-	EmployeeRepository employeeRepo;
+//	@Autowired
+//	EmployeeRepository employeeRepo;
 
 	@Autowired
 	ProjectService proService;
+
+	@Autowired
+	EmployeeService empService;
 
 	@GetMapping(value = "/")
 	public String displayHome(Model model) throws JsonProcessingException {
@@ -46,7 +50,7 @@ public class HomeController {
 		model.addAttribute("projectlist",projects);
 
 		//we are querying the database for project
-		List<EmployeeProject> employeeProjectCnt =  employeeRepo.employeeProjects();
+		List<EmployeeProject> employeeProjectCnt =  empService.employeeProjects();
 		model.addAttribute("employeeListProjectsCnt",employeeProjectCnt);
 
 

@@ -3,6 +3,8 @@ package com.example.pma.controllers;
 import java.util.List;
 
 import com.example.pma.dao.EmployeeRepository;
+import com.example.pma.services.EmployeeService;
+import com.example.pma.services.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,32 +22,31 @@ import com.example.pma.entities.Project;
 @RequestMapping(value = "/projects")
 public class ProjectController {
 	
-	@Autowired
-	ProjectRepository projectRepo;
-	@Autowired
-    EmployeeRepository empRepo;
+//	@Autowired
+//	ProjectRepository projectRepo;
+
+
+    @Autowired
+    ProjectService proService;
+
+    @Autowired
+    EmployeeService empService;
 
     @GetMapping(value = "/new")
     public String displayProjectForm(Model model){
     	Project aProject = new Project();
+    	Iterable<Employee> employees = empService.getAll();
     	model.addAttribute("project", aProject);
-    	List<Employee> employees = empRepo.findAll();
         model.addAttribute("employeeList", employees);
         return "projects/new-project";
     }
     
     
     @PostMapping("/save")
-    public String createProject(Model model, Project project){
-    	projectRepo.save(project);
-    	
-    	//need to add @RequestParam List<Long> employees, in the parameter
-//    	Iterable<Employee> chosenEmployees = empRepo.findAllById(employees);
-//    	for(Employee emp : chosenEmployees) {
-//    		emp.setProject(project);
-//    		empRepo.save(emp);
-//    	}
-    	
+    public String createProject(Model model, Project project, @RequestParam List<Long> employees){
+        proService.save(project);
+
+        // use a redirect to prevent duplicate submissions
     	return "redirect:/projects/new";
     	
     }
@@ -55,7 +56,7 @@ public class ProjectController {
     public String displayProject(Model model){
 
     	//we are querying the database for project
-    	List<Project> projects =  projectRepo.findAll();
+    	List<Project> projects =  proService.getAll();
     	model.addAttribute("projectlist",projects);
     	
         return "projects/list-project";

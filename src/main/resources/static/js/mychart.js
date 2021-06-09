@@ -15,7 +15,7 @@ new Chart(document.getElementById("myPieChart"), {
         labels: labelData,
         datasets: [{
             data: valueData,
-            backgroundColor: ["#3e95cd","#3a95ed","#3eba9f"],
+            backgroundColor: ["#2ecc71","#9b59b6","#3498db"],
             borderColor: 'rgb(255, 99, 132)'
         }]
     },

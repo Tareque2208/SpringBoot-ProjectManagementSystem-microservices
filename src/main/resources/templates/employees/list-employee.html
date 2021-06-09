@@ -1,41 +1,49 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-	
-	<head th:replace="layouts :: header"></head>
-	
-	<body>
-	
-	<nav th:replace="layouts :: foo"></nav>
-	
-		<div class="container">
-			<h3>Employee Directory</h3>
-			<hr>
+<html xmlns:th="https://www.thymeleaf.org">
+<head th:replace = "layouts :: header"></head>
+<body>
+
+<nav th:replace="layouts :: foo"></nav>
+<div class="container my-5" style="alignment: center">
+	<div class="card">
+	<div class="row">
+		<div class ="col-md-8">
+			<div>
+				<hr>
+			<h2>Employee Directory</h2>
+				<hr>
 			
 			<!--  Add New Employee Button -->
 			<a th:href="@{/employees/new}"
 				class="btn btn-primary btn-sm mb-3"> 
-				Add Employee 
+				Create new Employee 
 			</a> 
-		<div>
-	<h4> Current Employees </h4>
-		<table>
-		    <thead>
-		    <tr>
-		        <th>First Name</th>
-		        <th>Last Name</th>
-		        <th>Email</th>
-		    </tr>
-		    </thead>
-		    <tbody>
-		        <tr th:each="aEmployee : ${employees}">
-		            <td th:text="${aEmployee.firstName}"> </td>
-		            <td th:text="${aEmployee.lastName}"> </td>
-		            <td th:text="${aEmployee.email}"> </td>
-		        </tr>
-		    </tbody>
-		</table>
+
+				<hr>
+				<div>
+					<h4> Current Employees </h4>
+						<table class="table table-hover table-bordered table-dark table-striped">
+							<thead>
+							<tr>
+								<th>First Name</th>
+								<th>Last Name</th>
+								<th>Email</th>
+							</tr>
+							</thead>
+							<tbody>
+								<tr th:each="aEmployee : ${employees}">
+									<td th:text="${aEmployee.firstName}"> </td>
+									<td th:text="${aEmployee.lastName}"> </td>
+									<td th:text="${aEmployee.email}"> </td>
+								</tr>
+							</tbody>
+						</table>
+				</div>
+			</div>
+		</div>
 	</div>
 	</div>
+</div>
 
 </body>
 </html>
