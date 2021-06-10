@@ -31,6 +31,7 @@ import com.jrp.pma.entities.Project;
 
 //Updated version
 @SpringBootTest
+//for Junit testing
 @RunWith(SpringRunner.class)
 @SqlGroup({
         @Sql(executionPhase = ExecutionPhase.BEFORE_TEST_METHOD, scripts={"classpath:schema.sql", "classpath:data.sql"}),
